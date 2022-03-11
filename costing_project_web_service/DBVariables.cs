@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using System;
 using System.Data;
 using System.Linq;
@@ -200,7 +201,7 @@ namespace oti_cost
         public static string errorFunc(string error, string src)
         {
             string code = RandomString(10);
-            executenq("insert int errorFunc(error,src,code) values('"+ error +"','"+ src +"','"+code+"')");
+            executenq("insert into errorFunc(error,src,code) values('"+ error.Normalize().Replace("'", " ") + "','"+ src +"','"+code+"')");
             return code;
         }
 

@@ -30,5 +30,29 @@ namespace costing_project_web_service
             return JsonConvert.SerializeObject(res);
         }
 
+        [WebMethod]
+        public string FillDataTable(string query)
+        {
+            DataSet ds = DBVariables.fillDataTable(query);
+            return JsonConvert.SerializeObject(ds);
+        }
+
+        [WebMethod]
+        public string ExecuteScaler(string query)
+        {
+            string res = DBVariables.executescaler(query);
+            return JsonConvert.SerializeObject(res);
+        }
+
+        [WebMethod]
+        public string IsFound(string data)
+        {
+            string[] values = JsonConvert.DeserializeObject<string[]>(data);
+            string value = values[0];
+            string column = values[1];
+            string table = values[2];
+            return JsonConvert.SerializeObject(DBVariables.isFound(value, column, table));
+        }
+
     }
 }
